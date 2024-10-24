@@ -8,9 +8,9 @@ import subprocess
 import time
 import re
 
-total_packet = 100 #initialize a total number of packet and it is set by default to 100
+total_packet = 100 # Initialize a total number of packet and it is set by default to 100
 packet_count = 0  # Initialize a packet counter
-#Stop sniffing packets after total_packet number of  packets captured and stop the program
+# Stop sniffing packets after total_packet number of  packets captured and stop the program
 def stop_sniffing(packet):
     global packet_count
     packet_count += 1
@@ -20,7 +20,7 @@ def stop_sniffing(packet):
     return False
 
 
-#get the MAC address of the given interface
+# Get the MAC address of the given interface
 def get_current_mac(interface):
     try:
         # Get the output of ipconfig and decode it
@@ -35,7 +35,7 @@ def get_current_mac(interface):
     except subprocess.CalledProcessError:
         return None
 
-#get the IP address of the given interface
+# Get the IP address of the given interface
 def get_current_ip(interface):
     try:
         output = subprocess.check_output("ipconfig", shell=True).decode()
@@ -50,7 +50,7 @@ def get_current_ip(interface):
         return None
 
 
-#get a table of the all interfaces with its MAC and IP address
+# Get a table of the all interfaces with its MAC and IP address
 def ip_table():   
     addrs = psutil.net_if_addrs()
     interfaces = []  # Array to hold interface names
@@ -85,7 +85,7 @@ def get_raw_data(packet):
             print(f"Successfully decoded with {enc}")
             print(f"                              ------------------***Decoded Raw Data***------------------ \n {decoded_data}\n")
 
-            #get the login information if it is in the decoded raw data
+            # Get the login information if it is in the decoded raw data
             keywords = ["username", "user", "email", "pass", "login", "password", "UserName", "Password"]
             for i in keywords:
                 if i in decoded_data:
